@@ -1,5 +1,7 @@
 # CodeIgniter 4 Simple Authentication
 
+![Login image](/login.png)
+
 ## CodeIgniter
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
