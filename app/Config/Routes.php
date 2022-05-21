@@ -33,6 +33,24 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
+	$routes->get('/register',  'RegisterController::create', ['as' => 'register.create']);
+	$routes->post('/register', 'RegisterController::store', ['as' => 'register.store']);
+	$routes->get('/login',     'AuthController::create', ['as' => 'login.create']);
+	$routes->post('/login',    'AuthController::store', ['as' => 'login.store']);
+	$routes->post('/logout',   'AuthController::logout', ['as' => 'logout']);
+});
+
+$routes->group('', ['filter' => 'authGuard'], function ($routes) {
+	$routes->get('/dashboard', function () {
+		helper('form');
+
+		return view('dashboard');
+	}, ['as' => 'dashboard']);
+
+	// admin routes
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
